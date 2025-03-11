@@ -1,0 +1,43 @@
+
+touch /etc/bind/zones/db.grp1
+
+; grp1
+$TTL 300
+@ IN SOA soa.grp1.th.te-labs.training. dnsadmin.grp1.th.te-labs.training. (
+    1 ; Serial
+    604800 ; Refresh
+    86400 ; Retry
+    2419200 ; Expire
+    86400 ) ; Negative Cache TTL
+;
+; grp1
+@ NS ns1.grp1.th.te-labs.training.
+#@ NS ns2.grp1.th.te-labs.training.
+ns1 A 10.0.0.30
+#ns1 AAAA fd89:59e0:X:128::130
+#ns2 A 10.0.0.31
+#ns2 AAAA fd89:59e0:X:128::131
+www A 10.0.0.30
+
+$ vi /etc/bind/named.conf.local
+zone "grp1.th.te-labs.training" {
+    type primary;
+    file "/etc/bind/zones/db.grp1";
+    allow-transfer { any; };
+    also-notify {10.0.0.30;  };
+};
+
+dig @localhost soa grp1.th.te-labs.training.
+
+
+
+
+zone "grp1.th.te-labs.training" {
+    type primary;
+    file "/etc/bind/zones/db.grp1";
+    allow-transfer { any; };
+    also-notify { 10.0.0.30; };
+    key-directory "/etc/bind/keys";
+    auto-dnssec maintain;
+    inline-signing yes;
+};
