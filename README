@@ -14,4 +14,7 @@ sudo docker run -it hello-world bash
 create net
 docker network create --subnet=192.168.1.0/24 wsnet
 
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
 Lab 1
