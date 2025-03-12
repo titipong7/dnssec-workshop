@@ -1,0 +1,7 @@
+@startuml
+participant "Client" as Client
+participant "Bind Resolver" as Resolver
+
+Client -> Resolver: DNS Query
+Resolver --> Client: DNS Response
+@enduml

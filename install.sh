@@ -21,8 +21,8 @@ sudo apt-get install sshd
 # Add more services you want to disable
 
 # Remove unnecessary packages
-echo "Removing unnecessary packages..."
-sudo apt-get purge -y apache2 mysql-server cups
+#echo "Removing unnecessary packages..."
+#sudo apt-get purge -y apache2 mysql-server cups
 
 # Install necessary security updates
 echo "Installing necessary security updates..."
@@ -39,26 +39,26 @@ sudo systemctl reload ssh
 
 # Set up a firewall (UFW) to allow only necessary ports
 echo "Setting up UFW firewall..."
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow ssh
+#sudo ufw default deny incoming
+#sudo ufw default allow outgoing
+#sudo ufw allow ssh
 # Add more allowed ports as needed
-sudo ufw enable
+#sudo ufw enable
 
 # Install fail2ban to prevent brute-force attacks
 echo "Installing fail2ban..."
-sudo apt-get install fail2ban -y
-sudo systemctl enable fail2ban --now
+#sudo apt-get install fail2ban -y
+#sudo systemctl enable fail2ban --now
 
 # Disable IPv6 if not required (optional)
 echo "Disabling IPv6 (optional)..."
-# sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
 # Set strong password policies
-echo "Setting strong password policies..."
-echo "password requisite pam_pwquality.so retry=3 minlen=12 difok=3" | sudo tee -a /etc/pam.d/common-password
+#echo "Setting strong password policies..."
+#echo "password requisite pam_pwquality.so retry=3 minlen=12 difok=3" | sudo tee -a /etc/pam.d/common-password
 
 # Remove old kernels (optional)
 echo "Removing old kernels..."
