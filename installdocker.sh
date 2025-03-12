@@ -40,23 +40,23 @@ echo "Docker installed successfully!"
 
 # Step 4: Test Docker Installation
 echo "Step 4: Running a test container (hello-world)..."
-#sudo docker run hello-world
-#check_error
-#echo "Docker installation verified successfully!"
+sudo docker run hello-world
+check_error
+echo "Docker installation verified successfully!"
 
 # Step 5: Create a Custom Docker Network
 echo "Step 5: Creating a custom Docker network..."
-#sudo docker network create --subnet=172.0.0.0/24 wsnet
-#check_error
-#echo "Custom Docker network created successfully!"
+sudo docker network create --subnet=192.168.1.0/24 wsnet
+check_error
+echo "Custom Docker network created successfully!"
 
 # Step 6: Post-Installation Configuration
 echo "Step 6: Post-installation tasks..."
-sudo groupadd docker
-sudo usermod -aG docker $USER
-check_error
-newgrp docker
-check_error
+#sudo groupadd docker
+#sudo usermod -aG docker $USER
+#check_error
+#newgrp docker
+#check_error
 echo "User added to Docker group. Please log out and log back in for changes to take effect."
 
 # https://docs.docker.com/engine/install/linux-postinstall/
@@ -64,14 +64,14 @@ echo "User added to Docker group. Please log out and log back in for changes to 
 
 # Step 7: Optional Enable/Disable Docker Services
 echo "Would you like to enable Docker services on startup? (y/n)"
-read enable_services
-if [ "$enable_services" == "y" ]; then
+#read enable_services
+#if [ "$enable_services" == "y" ]; then
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
   echo "Docker services enabled successfully!"
-else
-  echo "Docker services will not start on boot."
-fi
+#else
+#  echo "Docker services will not start on boot."
+#fi
 
 #  sudo systemctl disable docker.service
 #  sudo systemctl disable containerd.service

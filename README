@@ -12,14 +12,6 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo docker run -it hello-world bash
 
 create net
-docker network create --subnet=10.0.0.0/24 wsnet
-
-@startuml
-participant "Client" as Client
-participant "Bind Resolver" as Resolver
-
-Client -> Resolver: DNS Query
-Resolver --> Client: DNS Response
-@enduml
+docker network create --subnet=192.168.1.0/24 wsnet
 
 Lab 1
