@@ -1,0 +1,23 @@
+services:
+  dns1:
+    build: .
+    ports:
+      - "32053:53"
+    # develop:
+    #   watch:
+    #     - action: sync
+    #       path: .
+    #       target: /etc/bind/
+  dns2:
+    build: .
+    ports:
+      - "32054:53"
+    # develop:
+    #   watch:
+    #     - action: sync
+    #       path: .
+    #       target: /code
+networks:
+  network1:
+    name: wsnet
+    external: true
